@@ -110,6 +110,8 @@ You can import the included postman script (school-administration-system.postman
 
 ## API Usage
 
+You may reimport the included postman script (school-administration-system.postman_collection.json) into your postman.
+
 Complete the installation and startup steps above before calling these endpoints. The application should be available at `http://localhost:3000`.
 
 ### Data Upload
