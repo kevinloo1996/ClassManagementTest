@@ -108,38 +108,86 @@ You can import the included postman script (school-administration-system.postman
 <br>
 
 
-### NEW note
-### Before go for this, above setting have to proceed too
-## ============================================================================================================================= API path =============================================================================================================================
-DataUpload API
+## API Usage
 
+Complete the installation and startup steps above before calling these endpoints. The application should be available at `http://localhost:3000`.
+
+### Data Upload
+
+Uploads a CSV file containing teacher, student, class, and subject relationships.
+
+```http
 POST http://localhost:3000/api/upload
-=============================================================================================================================
-StudentListing API
+Content-Type: multipart/form-data
+```
 
+In Postman, select **Body > form-data**, use `data` as the field name, and select the CSV file. Re-select the file if Postman loses the local file reference after importing the collection.
+
+### Student Listing
+
+Returns the local and external students for a class in a single paginated list.
+
+```http
 GET http://localhost:3000/api/class/P1-1/students?offset=0&limit=50
+```
 
-body: with raw
+| Query parameter | Description |
+|-----------------|-------------|
+| `offset` | Number of students to skip |
+| `limit` | Maximum number of students to return |
+
+No request body is required.
+
+### Update Class Name
+
+Updates the display name of every record with the specified class code.
+
+```http
+PUT http://localhost:3000/api/class/P1-1
+Content-Type: application/json
+```
+
+Request body:
+
+```json
 {
   "className": "P1 Updated"
 }
-=============================================================================================================================
-UpdateClassName API
+```
 
-PUT http://localhost:3000/api/class/P1-1
+A successful request returns `204 No Content`.
 
-=============================================================================================================================
-WorkloadReport API
+### Workload Report
 
+Returns the number of distinct classes taught by each teacher for each subject.
+
+```http
 GET http://localhost:3000/api/reports/workload
+```
 
-## ============================================================================================================================= Unit Test =============================================================================================================================
-1. cd in to typescript folder
-do
- npm test -- --runInBand src/controllers/unitTest/DataImportController.test.js
- npm test -- --runInBand src/controllers/unitTest/StudentListingController.test.js
- npm test -- --runInBand src/controllers/unitTest/UpdateClassNameController.test.js
- npm test -- --runInBand src/controllers/unitTest/WorkloadReportController.test.js
+No request body or query parameters are required.
 
+## Unit Tests
+
+Run all commands from the `typescript` directory:
+
+```bash
+cd typescript
+```
+
+Run the complete test suite:
+
+```bash
+npm test -- --runInBand
+```
+
+Run an individual controller test:
+
+```bash
+npm test -- --runInBand src/controllers/unitTest/DataImportController.test.js
+npm test -- --runInBand src/controllers/unitTest/StudentListingController.test.js
+npm test -- --runInBand src/controllers/unitTest/UpdateClassNameController.test.js
+npm test -- --runInBand src/controllers/unitTest/WorkloadReportController.test.js
+```
 
 
