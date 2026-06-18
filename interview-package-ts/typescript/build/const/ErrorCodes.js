@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const ErrorCodes = {
+    MALFORMED_JSON_ERROR_CODE: 88,
+    CSV_VALIDATION_ERROR_CODE: 89,
+    STUDENT_LISTING_VALIDATION_ERROR_CODE: 90,
+    UPDATE_CLASS_NAME_VALIDATION_ERROR_CODE: 91,
+    RUNTIME_ERROR_CODE: 99,
+};
+exports.default = ErrorCodes;
+//# sourceMappingURL=ErrorCodes.js.map
